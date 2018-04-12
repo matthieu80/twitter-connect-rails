@@ -2,6 +2,13 @@
 	<div class="row">
 		<div class="col-md-6 ml-md-auto mr-md-auto">
 			<h1>Welcome</h1>
+			<%= flash[:notice] %>
+			<%= flash[:alert] %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 ml-md-auto mr-md-auto">
+			<%= button_to "Login via Twitter", '/auth/twitter' %>
 		</div>
 	</div>
 </div>
