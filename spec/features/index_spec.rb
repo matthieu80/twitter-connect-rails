@@ -8,7 +8,7 @@ RSpec.feature "home" do
   		it "shows the welcome message" do
   			visit root_path
   			expect(page).to have_content('Welcome')
-  			expect(page).to have_button('Login via Twitter')
+  			expect(page).to have_link('Login via Twitter')
 		end
 	end
 
