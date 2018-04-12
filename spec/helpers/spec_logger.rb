@@ -7,7 +7,7 @@ module SpecLogger
 		valid_credentials
 		
 		visit root_path
-		expect(page).to have_button('Login via Twitter')
-		click_button('Login via Twitter')
+		expect(page).to have_link('Login via Twitter')
+		click_link('Login via Twitter')
 	end
 end 

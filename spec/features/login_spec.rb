@@ -13,8 +13,8 @@ RSpec.feature "login" do
  
       it "shows the Twitter screen name of the user" do
         visit root_path
-   			expect(page).to have_button('Login via Twitter')
-   			click_button('Login via Twitter')
+   			expect(page).to have_link('Login via Twitter')
+   			click_link('Login via Twitter')
    			expect(page).to have_content('You logged in successfully')
    		end
    	end
@@ -27,8 +27,8 @@ RSpec.feature "login" do
  
       it "redirected to root with flash message" do
    			visit root_path
-   			expect(page).to have_button('Login via Twitter')
-   			click_button('Login via Twitter')
+   			expect(page).to have_link('Login via Twitter')
+   			click_link('Login via Twitter')
    			expect(page).to have_content('Oops. There was a problem while logging in...')
    		end
    	end
