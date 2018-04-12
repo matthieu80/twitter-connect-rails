@@ -14,11 +14,8 @@ class User < ApplicationRecord
 	end
 
 	def get_followers_from_provider
-		case provider
-		when "twitter"
-			provider_followers = TwitterClient.new(self).followers
-		end
-		followers.delete_all
+		provider_followers = TwitterClient.new(self).get_followers
+		followers.delete_all if !provider_followers.empty?
 		add_followers(provider_followers)
 	end
 
