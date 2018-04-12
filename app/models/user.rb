@@ -12,4 +12,24 @@ class User < ApplicationRecord
 		)
 		user
 	end
+
+	def get_followers_from_provider
+		provider_followers = TwitterClient.new(self).get_followers
+		followers.delete_all if !provider_followers.empty?
+		add_followers(provider_followers)
+	end
+
+	def add_followers provider_followers
+		new_list_of_followers = []
+		provider_followers.map do |provider_follower|
+			new_list_of_followers << {
+				user_id: id,
+				provider: provider, 
+				name: provider_follower.screen_name,
+				avatar: provider_follower.profile_image_url_https.to_s
+			}
+		end
+		# bulk insert for accounts with many followers
+		Follower.bulk_insert values: new_list_of_followers
+	end
 end

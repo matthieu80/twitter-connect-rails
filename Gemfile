@@ -26,6 +26,10 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 #bootstrap
 gem 'bootstrap'
+# Twitter API
+gem 'twitter'
+# insert in Bulk (used for Twitter followers insert)
+gem 'bulk_insert'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

@@ -1,11 +1,16 @@
 require 'rails_helper'
 require 'helpers/spec_logger'
 include SpecLogger
+require 'services/fake_twitter_client'
 
 RSpec.feature "login" do
 	describe "successful" do
+		before do
+			stub_const("TwitterClient", FakeTwitterClient)
+  			login
+		end
+
 		it "shows the Twitter screen name of the user" do
-			login
 			expect(page).to have_content('Matthieu')
 			expect(page).to have_button('Logout')
 			click_button('Logout')
