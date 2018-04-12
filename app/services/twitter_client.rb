@@ -11,24 +11,20 @@ class TwitterClient
 	end
 
 	def get_followers
-		if @user.id == 1
-			collection = []
-			ids = get_follower_ids
-			return [] if !ids
-			for i in 0..ids.count / 100
-				section = ids.slice(i*100, (i+1)*100)
-				users = lookup(section)
-				collection << users unless !users
-			end
-			collection.flatten
-		else
-			@client.followers.take(200)
+		collection = []
+		ids = get_follower_ids
+		return [] if !ids
+		for i in 0..ids.count / 100
+			section = ids.slice(i*100, (i+1)*100)
+			users = lookup(section)
+			collection << users unless !users
 		end
+		collection.flatten
 	end
 
 	def get_follower_ids
 		begin
-			@client.follower_ids("Marsh931").to_a
+			@client.follower_ids.to_a
 		rescue Twitter::Error::TooManyRequests => e
 			nil
 		end
