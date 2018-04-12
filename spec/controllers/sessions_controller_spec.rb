@@ -18,4 +18,15 @@ RSpec.describe SessionsController, type: :controller do
 			expect(request.session[:user_id]).to eq 1
 		end
 	end
+
+	describe "destroy" do
+		let(:user) { create :user }
+		
+		it "should successfully create a user" do
+			request.session[:user_id] = user.id
+			expect {
+				delete :destroy
+			}.to change{request.session[:user_id]}.from(user.id).to(nil)
+		end
+	end
 end 

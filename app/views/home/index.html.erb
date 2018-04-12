@@ -9,6 +9,11 @@
 	<% if current_user %>
 		<div class="row">
 			<div class="col-md-6 ml-md-auto mr-md-auto">
+				<%= button_to "Logout", logout_path, method: :delete, class:'btn btn-primary' %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 ml-md-auto mr-md-auto">
 				<%= current_user.name %>
 			</div>
 		</div>

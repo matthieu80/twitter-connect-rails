@@ -9,6 +9,11 @@ class SessionsController < ApplicationController
 		redirect_to root_path, alert: "Oops. There was a problem while logging in..."
 	end
 
+	def destroy
+		reset_session
+		redirect_to root_path, notice: "Logged out"
+	end
+
 	protected
 
 	def auth_hash
