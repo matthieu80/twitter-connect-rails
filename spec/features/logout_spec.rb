@@ -4,8 +4,13 @@ include SpecLogger
 
 RSpec.feature "login" do
 	describe "successful" do
-		it "shows the Twitter screen name of the user" do
+
+		before do
+			stub_const("TwitterClient", FakeTwitterClient)
 			login
+		end
+		
+		it "shows the Twitter screen name of the user" do
 			expect(page).to have_content('Matthieu')
 			expect(page).to have_button('Logout')
 			click_button('Logout')

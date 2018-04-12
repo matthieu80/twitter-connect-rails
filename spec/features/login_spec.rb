@@ -1,11 +1,13 @@
 require 'rails_helper'
 require 'helpers/twitter_authentication'
 include TwitterAuthentication
+require 'services/fake_twitter_client'
  
 RSpec.feature "login" do
    	describe "successful" do
  
    		before do
+        stub_const("TwitterClient", FakeTwitterClient)
    			valid_credentials
        	end
  

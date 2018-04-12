@@ -1,6 +1,7 @@
 require 'rails_helper'
 require 'helpers/twitter_authentication'
 include TwitterAuthentication
+require 'services/fake_twitter_client'
 
 RSpec.describe SessionsController, type: :controller do
 
@@ -12,8 +13,9 @@ RSpec.describe SessionsController, type: :controller do
 		end
 
 		it "should successfully create a user" do
+			stub_const("TwitterClient", FakeTwitterClient)
 			expect {
-				post :create, provider: :twitter
+				post :create, params:{provider: :twitter}
 			}.to change{ User.count }.by(1)
 			expect(request.session[:user_id]).to eq 1
 		end
